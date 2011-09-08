@@ -6,8 +6,8 @@ require 'fileutils'
 task :default => [:create_links]
 
 task :create_links do
-  Dir[File.join(File.dirname(__FILE__), '**/*')].each do |f|
-    link_file f unless noninstall_files.include? f
+  Dir[File.join(File.dirname(__FILE__), '*')].each do |f|
+    link_file f unless noninstall_files.include? File.basename(f)
   end
 end
 

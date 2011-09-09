@@ -19,3 +19,7 @@ PROMPT='%{$fg[yellow]%}[%{$fg[cyan]%}%m%{$fg[yellow]%}] %{$fg[blue]%}%3~ %{$fg[y
 
 autoload -U compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# rubylib
+
+export RUBYLIB=$RUBYLIB:~/ics/senor_armando/lib

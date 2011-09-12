@@ -23,3 +23,15 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # rubylib
 
 export RUBYLIB=$RUBYLIB:~/ics/senor_armando/lib
+
+#  history
+
+HISTFILE=~/.history/zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+

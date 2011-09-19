@@ -23,7 +23,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # rubylib
 
 export RUBYLIB=$RUBYLIB:~/ics/senor_armando/lib
-
+export RUBYLIB=$RUBYLIB:~/ics/icss/lib
 #  history
 
 HISTFILE=~/.history/zsh_history

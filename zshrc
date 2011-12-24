@@ -60,7 +60,7 @@ function git_color_status() {
     echo "%{$fg[red]%}"
   elif [ -n "$(echo $git_info | grep "Changes to be committed")" ]; then
     echo "%{$fg[yellow]%}"
-  elif [ -n "$(git $git_info | grep "Untracked files")" ]; then
+  elif [ -n "$(echo $git_info | grep "Untracked files")" ]; then
     echo "%{$fg[cyan]%}"
   else
     echo "%{$fg[green]%}"

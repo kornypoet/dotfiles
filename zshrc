@@ -61,19 +61,19 @@ _git_status() {
   fi
 }
 
-_git_difference_from_track() {
-  git_info=$(git status 2> /dev/null)
-  if [ -n "$(echo $git_info | grep "Your branch is behind")" ]; then
-    difference="-"
-  elif [ -n "$(echo $git_info | grep "Your branch is ahead of")" ]; then
-    difference="+"
-  fi
-
-  if [ -n $difference ]; then
-    difference+=$(echo $git_info | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
-    echo $difference
-  fi
-}
+# _git_difference_from_track() {
+#   git_info=$(git status 2> /dev/null)
+#   if [ -n "$(echo $git_info | grep "Your branch is behind")" ]; then
+#     difference="-"
+#   elif [ -n "$(echo $git_info | grep "Your branch is ahead of")" ]; then
+#     difference="+"
+#   fi
+# 
+#   if [ -n $difference ]; then
+#     difference+=$(echo $git_info | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
+#     echo $difference
+#   fi
+# }
 
 _git_prompt_color() {
     current_git_status=$(_git_status)

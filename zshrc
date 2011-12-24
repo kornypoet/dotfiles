@@ -12,8 +12,7 @@ autoload -U colors && colors
 # allow command substitution in the prompt
 setopt PROMPT_SUBST
 
-PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_prompt_info) %{$fg[yellow]%}%% %{$reset_color%}'
-
+PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
 
 # completion
 
@@ -44,46 +43,27 @@ setopt HIST_REDUCE_BLANKS
 # git
 
 # get the name of the branch we are on
-function git_prompt_info() {
+function git_colored_prompt() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(_git_prompt_color)(${ref#refs/heads/}$(_git_difference_from_track))"
+  echo "$(_git_color_status)(${ref#refs/heads/})"
 }
-_git_status() {
+
+_git_color_status() {
   git_info=$(git status 2> /dev/null)
-  if [ -n "$(echo $git_info | grep "Changes not staged")" ]; then
-    echo "changed"
-  elif [ -n "$(echo $git_info | grep "Changes to be committed")" ]; then
-    echo "pending"
-  elif [ -n "$(git $git_info | grep "Untracked files")" ]; then
-    echo "untracked"
-  else
-    echo "unchanged"
+  if [ -n "$(echo $git_info | grep "Your branch is behind")" ]; then
+    diff="-"
+  elif [ -n "$(echo $git_info | grep "Your branch is ahead of")" ]; then
+    diff="+"
+  else 
+    diff=""
   fi
-}
-
-# _git_difference_from_track() {
-#   git_info=$(git status 2> /dev/null)
-#   if [ -n "$(echo $git_info | grep "Your branch is behind")" ]; then
-#     difference="-"
-#   elif [ -n "$(echo $git_info | grep "Your branch is ahead of")" ]; then
-#     difference="+"
-#   fi
-# 
-#   if [ -n $difference ]; then
-#     difference+=$(echo $git_info | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
-#     echo $difference
-#   fi
-# }
-
-_git_prompt_color() {
-    current_git_status=$(_git_status)
-    if [ "changed" = $current_git_status ]; then
-      echo "%{$fg[red]%}"
-    elif [ "pending" = $current_git_status ]; then
-      echo "%{$fg[yellow]%}"
-    elif [ "unchanged" = $current_git_status ]; then
-      echo "%{$fg[green]%}"
-    elif [ "untracked" = $current_git_status ]; then
-      echo "%{$fg[cyan]%}"
-    fi
+  if [ -n "$(echo $git_info | grep "Changes not staged")" ]; then
+    echo "%{$fg[red]%}$diff"
+  elif [ -n "$(echo $git_info | grep "Changes to be committed")" ]; then
+    echo "%{$fg[yellow]%}$diff"
+  elif [ -n "$(git $git_info | grep "Untracked files")" ]; then
+    echo "%{$fg[cyan]%}$diff"
+  else
+    echo "%{$fg[green]%}$diff"
+  fi
 }

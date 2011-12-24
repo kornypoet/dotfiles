@@ -1,6 +1,7 @@
 # aliases
 
 alias ls="ls -FG"
+alias la="ls -lah"
 
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

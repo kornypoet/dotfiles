@@ -12,7 +12,7 @@ autoload -U colors && colors
 # allow command substitution in the prompt
 setopt PROMPT_SUBST
 
-PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
+PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~ $(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
 
 # completion
 
@@ -45,25 +45,24 @@ setopt HIST_REDUCE_BLANKS
 # get the name of the branch we are on
 function git_colored_prompt() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(_git_color_status)(${ref#refs/heads/})"
+  echo "$(git_color_status)(${ref#refs/heads/}$(git_commits))"
 }
 
-_git_color_status() {
+function git_commits() {
+  commits=$(git cherry | grep "^+" 2> /dev/null) || return
+  num=$(echo $commits | wc -l 2> /dev/null)
+  echo "+$num"
+}
+
+function git_color_status() {
   git_info=$(git status 2> /dev/null)
-  if [ -n "$(echo $git_info | grep "Your branch is behind")" ]; then
-    diff="-"
-  elif [ -n "$(echo $git_info | grep "Your branch is ahead of")" ]; then
-    diff="+"
-  else 
-    diff=""
-  fi
   if [ -n "$(echo $git_info | grep "Changes not staged")" ]; then
-    echo "%{$fg[red]%}$diff"
+    echo "%{$fg[red]%}"
   elif [ -n "$(echo $git_info | grep "Changes to be committed")" ]; then
-    echo "%{$fg[yellow]%}$diff"
+    echo "%{$fg[yellow]%}"
   elif [ -n "$(git $git_info | grep "Untracked files")" ]; then
-    echo "%{$fg[cyan]%}$diff"
+    echo "%{$fg[cyan]%}"
   else
-    echo "%{$fg[green]%}$diff"
+    echo "%{$fg[green]%}"
   fi
 }

@@ -14,52 +14,6 @@ setopt PROMPT_SUBST
 
 PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_prompt_info) %{$fg[yellow]%}%% %{$reset_color%}'
 
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[red]%}"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%}"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}"
-
-_git_status() {
-  STATUS=$(git status 2> /dev/null)
-  if [ -n "$(echo $STATUS | grep "Changes not staged")" ]; then
-    echo "changed"
-  elif [ -n "$(echo $STATUS | grep "Changes to be committed")" ]; then
-    echo "pending"
-  elif [ -n "$(git $STATUS | grep "Untracked files")" ]; then
-    echo "untracked"
-  else
-    echo "unchanged"
-  fi
-}
-
-_git_difference_from_track() {
-  STATUS=$(git status 2> /dev/null)
-  if [ -n "$(echo $STATUS | grep "Your branch is behind")" ]; then
-    difference="-"
-  elif [ -n "$(echo $STATUS | grep "Your branch is ahead of")" ]; then
-    difference="+"
-  fi
-
-  if [ -n $difference ]; then
-    difference+=$(echo $STATUS | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
-    echo $difference
-  fi
-}
-
-_git_prompt_color() {
-    current_git_status=$(_git_status)
-    if [ "changed" = $current_git_status ]; then
-      echo "%{$fg[red]%}"
-    elif [ "pending" = $current_git_status ]; then
-      echo "%{$fg[yellow]%}"
-    elif [ "unchanged" = $current_git_status ]; then
-      echo "%{$fg[green]%}"
-    elif [ "untracked" = $current_git_status ]; then
-      echo "%{$fg[cyan]%}"
-    fi
-}
 
 # completion
 
@@ -94,36 +48,42 @@ function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
   echo "$(_git_prompt_color)(${ref#refs/heads/}$(_git_difference_from_track))"
 }
+_git_status() {
+  git_info=$(git status 2> /dev/null)
+  if [ -n "$(echo $git_info | grep "Changes not staged")" ]; then
+    echo "changed"
+  elif [ -n "$(echo $git_info | grep "Changes to be committed")" ]; then
+    echo "pending"
+  elif [ -n "$(git $git_info | grep "Untracked files")" ]; then
+    echo "untracked"
+  else
+    echo "unchanged"
+  fi
+}
 
-# Get the status of the working tree
-git_prompt_status() {
-  INDEX=$(git status --porcelain 2> /dev/null)
-  STATUS="%{$fg[green]%}"
-  if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED"
+_git_difference_from_track() {
+  git_info=$(git status 2> /dev/null)
+  if [ -n "$(echo $git_info | grep "Your branch is behind")" ]; then
+    difference="-"
+  elif [ -n "$(echo $git_info | grep "Your branch is ahead of")" ]; then
+    difference="+"
   fi
-  if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED"
-  elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED"
+
+  if [ -n $difference ]; then
+    difference+=$(echo $git_info | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
+    echo $difference
   fi
-  if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED"
-  elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED"
-  elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED"
-  fi
-  if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_RENAMED"
-  fi
-  if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED"
-  elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED"
-  fi
-  if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED"
-  fi
-  echo $STATUS
+}
+
+_git_prompt_color() {
+    current_git_status=$(_git_status)
+    if [ "changed" = $current_git_status ]; then
+      echo "%{$fg[red]%}"
+    elif [ "pending" = $current_git_status ]; then
+      echo "%{$fg[yellow]%}"
+    elif [ "unchanged" = $current_git_status ]; then
+      echo "%{$fg[green]%}"
+    elif [ "untracked" = $current_git_status ]; then
+      echo "%{$fg[cyan]%}"
+    fi
 }

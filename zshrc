@@ -21,6 +21,44 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}"
 
+_git_status() {
+  if [ -n "$(git status | grep "Changes not staged")" ]; then
+    echo "changed"
+  elif [ -n "$(git status | grep "Changes to be committed")" ]; then
+    echo "pending"
+  elif [ -n "$(git status | grep "Untracked files")" ]; then
+    echo "untracked"
+  else
+    echo "unchanged"
+  fi
+}
+
+_git_difference_from_track() {
+  if [ -n "$(git status | grep "Your branch is behind")" ]; then
+    difference="-"
+  elif [ -n "$(git status | grep "Your branch is ahead of")" ]; then
+    difference="+"
+  fi
+
+  if [ -n $difference ]; then
+    difference+=$(git status | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
+    echo $difference
+  fi
+}
+
+_git_prompt_color() {
+    current_git_status=$(_git_status)
+    if [ "changed" = $current_git_status ]; then
+      echo "%{$fg_bold[red]%}"
+    elif [ "pending" = $current_git_status ]; then
+      echo "%{$fg_bold[yellow]%}"
+    elif [ "unchanged" = $current_git_status ]; then
+      echo "%{$fg_bold[green]%}"
+    elif [ "untracked" = $current_git_status ]; then
+      echo "%{$fg_bold[cyan]%}"
+    fi
+}
+
 # completion
 
 # match uppercase from lowercase
@@ -52,7 +90,7 @@ setopt HIST_REDUCE_BLANKS
 # get the name of the branch we are on
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(git_prompt_status)(${ref#refs/heads/})"
+  echo "$(_git_prompt_color)(${ref#refs/heads/})"
 }
 
 # Get the status of the working tree

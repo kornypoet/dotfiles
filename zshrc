@@ -50,7 +50,7 @@ function git_colored_prompt() {
 
 function git_commits() {
   commits=$(git cherry | grep "^+" 2> /dev/null) || return
-  num=$(echo $commits | wc -l 2> /dev/null)
+  num=$(echo $commits | wc -l | sed -e 's/[ ]*//' 2> /dev/null)
   echo "+$num"
 }
 

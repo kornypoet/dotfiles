@@ -22,11 +22,12 @@ ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[yellow]%}"
 
 _git_status() {
-  if [ -n "$(git status | grep "Changes not staged")" ]; then
+  STATUS=$(git status 2> /dev/null)
+  if [ -n "$(echo $STATUS | grep "Changes not staged")" ]; then
     echo "changed"
-  elif [ -n "$(git status | grep "Changes to be committed")" ]; then
+  elif [ -n "$(echo $STATUS | grep "Changes to be committed")" ]; then
     echo "pending"
-  elif [ -n "$(git status | grep "Untracked files")" ]; then
+  elif [ -n "$(git $STATUS | grep "Untracked files")" ]; then
     echo "untracked"
   else
     echo "unchanged"
@@ -34,14 +35,15 @@ _git_status() {
 }
 
 _git_difference_from_track() {
-  if [ -n "$(git status | grep "Your branch is behind")" ]; then
+  STATUS=$(git status 2> /dev/null)
+  if [ -n "$(echo $STATUS | grep "Your branch is behind")" ]; then
     difference="-"
-  elif [ -n "$(git status | grep "Your branch is ahead of")" ]; then
+  elif [ -n "$(echo $STATUS | grep "Your branch is ahead of")" ]; then
     difference="+"
   fi
 
   if [ -n $difference ]; then
-    difference+=$(git status | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
+    difference+=$(echo $STATUS | grep "Your branch is" | sed "s/Your branch is .* by//g" | sed "s/[^0-9]//g")
     echo $difference
   fi
 }
@@ -49,13 +51,13 @@ _git_difference_from_track() {
 _git_prompt_color() {
     current_git_status=$(_git_status)
     if [ "changed" = $current_git_status ]; then
-      echo "%{$fg_bold[red]%}"
+      echo "%{$fg[red]%}"
     elif [ "pending" = $current_git_status ]; then
-      echo "%{$fg_bold[yellow]%}"
+      echo "%{$fg[yellow]%}"
     elif [ "unchanged" = $current_git_status ]; then
-      echo "%{$fg_bold[green]%}"
+      echo "%{$fg[green]%}"
     elif [ "untracked" = $current_git_status ]; then
-      echo "%{$fg_bold[cyan]%}"
+      echo "%{$fg[cyan]%}"
     fi
 }
 

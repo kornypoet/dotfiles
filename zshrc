@@ -92,7 +92,7 @@ setopt HIST_REDUCE_BLANKS
 # get the name of the branch we are on
 function git_prompt_info() {
   ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-  echo "$(_git_prompt_color)(${ref#refs/heads/})"
+  echo "$(_git_prompt_color)(${ref#refs/heads/}$(_git_difference_from_track))"
 }
 
 # Get the status of the working tree

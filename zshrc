@@ -12,7 +12,7 @@ autoload -U colors && colors
 # allow command substitution in the prompt
 setopt PROMPT_SUBST
 
-PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~ $(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
+PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
 
 # completion
 

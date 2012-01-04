@@ -12,11 +12,10 @@ task :create_links do
 end
 
 def link_file f
-  return if File.directory? f
   symlink = File.join(ENV["HOME"], '.' + File.basename(f))
   FileUtils.ln_s(f, symlink) unless File.exist? symlink
 end
 
 def noninstall_files
-  [ 'README.md', 'Rakefile' ] 
+  [ 'README.md', 'Rakefile', '.', '..', '.git' ] 
 end

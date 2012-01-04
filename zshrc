@@ -5,6 +5,7 @@ export SHELL=/bin/zsh
 
 alias ls="ls -FG"
 alias em="/Applications/Emacs.app/Contents/MacOS/Emacs"
+alias la="ls -lah"
 
 # Load RVM function
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -15,7 +16,7 @@ autoload -U colors && colors
 # allow command substitution in the prompt
 setopt PROMPT_SUBST
 
-PROMPT='%{$fg[yellow]%}[%{$fg[cyan]%}%m%{$fg[yellow]%}] %{$fg[blue]%}%3~ %{$fg[yellow]%}%% %{$reset_color%}'
+PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
 
 # completion
 
@@ -29,6 +30,10 @@ export CHEF_ORGANIZATION=infochimps_v2
 export CHEF_USER=dempseyt
 export CHEF_HOMEBASE=/Users/travis/ics/sysadmin/infochimps_homebase
 export CHEF_REPO_ROOT=$HOME/ics/sysadmin
+=======
+# grep
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='2;32'
 
 # rubylib
 export RUBYLIB=$RUBYLIB:~/ics/senor_armando/lib
@@ -37,7 +42,8 @@ export RUBYLIB=$RUBYLIB:~/ics/troop/lib
 
 export JRUBYLIB=/usr/local/Cellar/jruby/1.6.5/jruby/lib/ruby/site_ruby/1.8:/usr/local/Cellar/jruby/1.6.5/jruby/lib/ruby/site_ruby/shared:/usr/local/Cellar/jruby/1.6.5/jruby/lib/ruby/1.8
 # export RUBYLIB=$RUBYLIB:$JRUBYLIB
-#  history
+
+# history
 
 HISTFILE=~/.history/zsh_history
 HISTSIZE=10000
@@ -48,3 +54,29 @@ setopt SHARE_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 
+# git
+
+# get the name of the branch we are on
+function git_colored_prompt() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo "$(git_color_status)(${ref#refs/heads/}$(git_commits))"
+}
+
+function git_commits() {
+  commits=$(git cherry | grep "^+" 2> /dev/null) || return
+  num=$(echo $commits | wc -l | sed -e 's/[ ]*//' 2> /dev/null)
+  echo "+$num"
+}
+
+function git_color_status() {
+  git_info=$(git status 2> /dev/null)
+  if [ -n "$(echo $git_info | grep "Changes not staged")" ]; then
+    echo "%{$fg[red]%}"
+  elif [ -n "$(echo $git_info | grep "Changes to be committed")" ]; then
+    echo "%{$fg[yellow]%}"
+  elif [ -n "$(echo $git_info | grep "Untracked files")" ]; then
+    echo "%{$fg[cyan]%}"
+  else
+    echo "%{$fg[green]%}"
+  fi
+}

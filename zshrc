@@ -30,7 +30,7 @@ export CHEF_ORGANIZATION=infochimps_v2
 export CHEF_USER=dempseyt
 export CHEF_HOMEBASE=/Users/travis/ics/sysadmin/infochimps_homebase
 export CHEF_REPO_ROOT=$HOME/ics/sysadmin
-=======
+
 # grep
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='2;32'

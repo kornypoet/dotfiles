@@ -8,3 +8,11 @@
 
 ;; create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
+
+;; load init.el
+(load "~/.emacs.d/init.el")
+
+;; enable ido mode
+(setq ido-enable-flex-matching t)
+  (setq ido-everywhere t)
+  (ido-mode 1)

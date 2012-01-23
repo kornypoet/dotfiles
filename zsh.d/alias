@@ -1,0 +1,15 @@
+### Aliases ###
+
+# Colorized and classified file listings
+alias ls="ls -FG"
+
+# Colorized and classified file listings using non-BSD version of ls
+# alias ls=ls -F --color=auto
+
+# Show hidden files with human-readable size in list form 
+alias la="ls -lah"
+
+# Open Mac OSX emacs 
+alias em="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
+

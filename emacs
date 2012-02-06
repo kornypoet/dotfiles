@@ -19,3 +19,5 @@
 (global-set-key         (kbd "C-z")            'undo)
 (global-set-key         (kbd "M-g")            'goto-line)
 (global-set-key         (kbd "M-r")            'query-replace-regexp)
+(global-set-key         (kbd "<C-tab>")        'next-buffer)
+(global-set-key         (kbd "<C-S-tab>")      'previous-buffer)

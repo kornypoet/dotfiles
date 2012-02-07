@@ -53,7 +53,7 @@ compdef _gem gem
 # Knife cluster completion
 _knife() {
   if (( CURRENT == 2 )); then
-    compadd bootstrap client cluster configure cookbook cookbook-site data-bag environment exec help index node recipe role search ssh status tag
+    compadd -Q bootstrap client cluster configure cookbook "cookbook site" "data bag" environment exec help index node recipe role search ssh status tag
   elif (( CURRENT == 3 )); then
     if [[ $words[2] == "cluster" ]]; then
       compadd kick list launch ssh kill show start bootstrap stop proxy sync

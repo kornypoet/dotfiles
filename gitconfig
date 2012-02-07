@@ -5,3 +5,9 @@
 	ui = true
 [github]
 	user = kornypoet
+[alias]
+        st = status
+	ci = commit
+	co = checkout
+	br = branch
+	df = diff

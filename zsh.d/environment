@@ -3,6 +3,9 @@
 # Explicitly set shell
 # export SHELL=/bin/zsh
 
+# Add dotfiles bin to load path
+export PATH=$PATH:~/.dotfiles/bin
+
 # Cluster chef 
 export CHEF_ORGANIZATION=infochimps_v2
 export CHEF_USER=dempseyt

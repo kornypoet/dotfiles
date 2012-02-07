@@ -21,3 +21,6 @@
 (global-set-key         (kbd "M-r")            'query-replace-regexp)
 (global-set-key         (kbd "<C-tab>")        'next-buffer)
 (global-set-key         (kbd "<C-S-tab>")      'previous-buffer)
+
+;; default font and window size
+(set-default-font "-apple-menlo-medium-r-normal--*-125-*-*-m-*-*-*")

@@ -12,4 +12,7 @@ alias la="ls -lah"
 # Open Mac OSX emacs 
 alias em="/Applications/Emacs.app/Contents/MacOS/Emacs"
 
-
+# Make directory navigation easier
+alias ..="cd ../"
+alias ...="cd ../.."
+alias ....="cd ../../.."

@@ -1,7 +1,7 @@
 ### Environment Variables ###
 
 # Explicitly set shell
-# export SHELL=/bin/zsh
+export SHELL=/bin/zsh
 
 # Add dotfiles bin to load path
 export PATH=$PATH:~/.dotfiles/bin

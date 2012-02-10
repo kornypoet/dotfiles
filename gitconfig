@@ -11,3 +11,4 @@
 	co = checkout
 	br = branch
 	df = diff
+	sm = submodule

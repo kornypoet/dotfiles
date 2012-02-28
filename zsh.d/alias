@@ -16,3 +16,7 @@ alias em="/Applications/Emacs.app/Contents/MacOS/Emacs"
 alias ..="cd ../"
 alias ...="cd ../.."
 alias ....="cd ../../.."
+
+# Useful bundle shorcuts
+alias bx="bundle exec"
+alias bake="bundle exec rake"

@@ -52,15 +52,40 @@ compdef _gem gem
 
 # Knife cluster completion
 _knife() {
+  if [[ -e $PWD/.chef ]]; then 
+    local chef_homebase=`greadlink -f $PWD/.chef`/.. 
+  elif [[ -e $HOME/.chef ]]; then
+    local chef_homebase=`greadlink -f $HOME/.chef`/..
+  fi
   if (( CURRENT == 2 )); then
     compadd -Q bootstrap client cluster configure cookbook "cookbook site" "data bag" environment exec help index node recipe role search ssh status tag
   elif (( CURRENT == 3 )); then
-    if [[ $words[2] == "cluster" ]]; then
-      compadd kick list launch ssh kill show start bootstrap stop proxy sync
-    fi      
+    if [[ $words[2] == "client" ]]; then  
+      compadd -Q "bulk delete" create delete edit list reregister show
+    elif [[ $words[2] == "cluster" ]]; then
+      compadd bootstrap ssh kick kill launch list proxy show start stop sync vagrant
+    elif [[ $words[2] == "configure" ]]; then       
+      compadd -Q client
+    elif [[ $words[2] == "cookbook" ]]; then       
+      compadd -Q "bulk delete" create delete download list metadata "metadata from" show test upload
+    elif [[ $words[2] == "environment" ]]; then       
+      compadd -Q create delete edit "from file" list show
+    elif [[ $words[2] == "node" ]]; then       
+      compadd -Q "bulk delete" create delete edit "from file" list "run_list add" "run_list remove" show 
+    elif [[ $words[2] == "recipe" ]]; then       
+      compadd -Q list
+    elif [[ $words[2] == "role" ]]; then
+      compadd -Q "bulk delete" create delete edit "from file" list show
+    elif [[ $words[2] == "tag" ]]; then
+      compadd -Q create delete list       
+    fi
   elif (( CURRENT == 4)); then
     if [[ $words[2] == "cluster" ]]; then
-      compadd $( ls $CHEF_HOMEBASE/clusters | awk -F '.' '{print $1}' )
+      compadd $( ls $chef_homebase/clusters | awk -F '.' '{print $1}' )
+    elif [[ $words[2] == "cookbook" ]]; then
+      compadd -Q $( ls $chef_homebase/cookbooks )
+    elif [[ $words[2] == "role" ]]; then
+      compadd -Q $( ls $chef_homebase/roles | awk -F '.' '{print $1}' )	
     fi
   fi
 }

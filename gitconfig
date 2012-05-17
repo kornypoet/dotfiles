@@ -5,6 +5,7 @@
 	ui = true
 [github]
 	user = kornypoet
+	password = !security 2>&1 >/dev/null find-internet-password -gs github.com | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
 [alias]
         st = status
 	ci = commit

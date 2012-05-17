@@ -1,5 +1,9 @@
 ### Completion ###
 
+# Turn on auto-correct
+setopt correctall
+
+# Load completion module
 autoload -U compinit && compinit
 
 # Match uppercase from lowercase

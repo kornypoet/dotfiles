@@ -10,7 +10,10 @@ alias ls="ls -FG"
 alias la="ls -lah"
 
 # Open Mac OSX emacs 
-alias em="/Applications/Emacs.app/Contents/MacOS/Emacs"
+alias gmacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+
+# Open Mac OSX emacs in terminal mode
+alias emacs="gmacs -nw"
 
 # Make directory navigation easier
 alias ..="cd ../"

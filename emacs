@@ -1,15 +1,16 @@
 ;; Disable startup message
 (setq inhibit-startup-message t)
 
-;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
-(custom-set-variables
-  '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
-  '(backup-directory-alist '((".*" . "~/.emacs.d/backups/"))))
-
-;; create the autosave dir if necessary, since emacs won't.
+;; Create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
-;; enable ido mode
+;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
+(custom-set-variables
+ '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(tool-bar-mode nil))
+
+;; Enable ido mode
 (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
   (ido-mode 1)
@@ -22,5 +23,15 @@
 (global-set-key         (kbd "<C-tab>")        'next-buffer)
 (global-set-key         (kbd "<C-S-tab>")      'previous-buffer)
 
-;; default font and window size
-(set-default-font "-apple-menlo-medium-r-normal--*-125-*-*-m-*-*-*")
+;; Load pig-mode
+(load-file "~/.dotfiles/pig-mode.el")
+
+;; Add file types associated with ruby
+(setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
+
+;; Default font settings
+(custom-set-faces
+ '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Monaco")))))

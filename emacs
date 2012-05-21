@@ -22,15 +22,16 @@
 (global-set-key         (kbd "M-r")            'query-replace-regexp)
 (global-set-key         (kbd "<C-tab>")        'next-buffer)
 (global-set-key         (kbd "<C-S-tab>")      'previous-buffer)
+(global-set-key         (kbd "M-/")            'indent-region)
 
 ;; Load pig-mode
 (load-file "~/.dotfiles/pig-mode.el")
 
 ;; Add file types associated with ruby
-(setq auto-mode-alist (cons '("Rakefile" . ruby-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("Gemfile" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Rakefile"  . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Gemfile"   . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.rake$" . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.rake$"  . ruby-mode) auto-mode-alist))
 
 ;; Default font settings
 (custom-set-faces

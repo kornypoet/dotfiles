@@ -15,6 +15,9 @@
   (setq ido-everywhere t)
   (ido-mode 1)
 
+;; Indentation 2 spaces everywhere
+(setq-default c-basic-offset 2)
+
 ;; Key bindings
 (global-set-key         (kbd "M-;")            'comment-or-uncomment-region)
 (global-set-key         (kbd "C-z")            'undo)
@@ -28,10 +31,11 @@
 (load-file "~/.dotfiles/pig-mode.el")
 
 ;; Add file types associated with ruby
-(setq auto-mode-alist (cons '("Rakefile"  . ruby-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("Gemfile"   . ruby-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("Guardfile" . ruby-mode) auto-mode-alist))
-(setq auto-mode-alist (cons '("\\.rake$"  . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Rakefile"    . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Gemfile"     . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Guardfile"   . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.rake$"    . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
 
 ;; Default font settings
 (custom-set-faces

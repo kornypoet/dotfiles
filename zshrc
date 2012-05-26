@@ -4,7 +4,7 @@ for zsh_source in $HOME/.dotfiles/zsh.d/*; do
 done
 
 # Setup rbenv
-# eval "$(rbenv init -)"
+eval "$(rbenv init -)"
      
 # key bindings
 bindkey '^[[5C' forward-word
@@ -14,4 +14,4 @@ bindkey '^[[5D' backward-word
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 
 # Load RVM function
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

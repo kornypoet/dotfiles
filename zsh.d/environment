@@ -12,7 +12,7 @@ export PATH=$PATH:~/.dotfiles/bin
 # Cluster chef 
 # export CHEF_ORGANIZATION=infochimps_v2
 export CHEF_USER=dempseyt
-export CHEF_HOMEBASE=$HOME/ics/infochimps-homebase
+# export CHEF_HOMEBASE=$HOME/ics/infochimps-homebase
 
 # Colorized grep output
 export GREP_OPTIONS='--color=auto'

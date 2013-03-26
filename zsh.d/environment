@@ -22,6 +22,3 @@ export GREP_COLOR='0;32'
 export RUBYLIB=$RUBYLIB:~/ics/senor_armando/lib
 export RUBYLIB=$RUBYLIB:~/ics/icss/lib
 export RUBYLIB=$RUBYLIB:~/ics/troop/lib
-
-
-

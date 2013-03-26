@@ -1,7 +1,7 @@
 ### Completion ###
 
 # Turn on auto-correct
-setopt correctall
+# setopt correctall
 
 # Load completion module
 autoload -U compinit && compinit

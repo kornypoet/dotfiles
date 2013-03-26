@@ -26,3 +26,5 @@ alias knife="nocorrect knife "
 # Useful bundle shorcuts
 alias bx="bundle exec"
 alias bake="bundle exec rake"
+alias brb="bundle console"
+alias bk="bundle exec knife"

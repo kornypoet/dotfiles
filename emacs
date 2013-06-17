@@ -20,20 +20,42 @@
 
 ;; Key bindings
 (global-set-key         (kbd "M-;")            'comment-or-uncomment-region)
-(global-set-key         (kbd "C-z")            'undo)
+;; (global-set-key         (kbd "C-z")            'undo)
 (global-set-key         (kbd "M-g")            'goto-line)
 (global-set-key         (kbd "M-r")            'query-replace-regexp)
 (global-set-key         (kbd "<C-tab>")        'next-buffer)
 (global-set-key         (kbd "<C-S-tab>")      'previous-buffer)
-(global-set-key         (kbd "M-/")            'indent-region)
+(global-set-key         (kbd "C-x C-g")        'magit-status)
+;; (global-set-key         (kbd "M-/")            'indent-region)
 
 ;; Load pig-mode
 (load-file "~/.dotfiles/pig-mode.el")
+
+;; Load markdown-mode
+(load-file "~/.dotfiles/markdown-mode.el")
+
+;; Load feature mode
+(add-to-list 'load-path "~/.dotfiles/feature-mode")
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+
+;; need to fix emacs loading
+(add-to-list 'load-path "~/.dotfiles")
+
+;; Load magit
+(add-to-list 'load-path "~/.dotfiles/magit")
+(require 'magit)
+
+(setq magit-status-buffer-switch-function 'switch-to-buffer)
+
+;; Load inferior ruby
+(add-to-list 'load-path "~/.dotfiles/inf-ruby")
 
 ;; Add file types associated with ruby
 (setq auto-mode-alist (cons '("Rakefile"    . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Gemfile"     . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("Guardfile"   . ruby-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("Capfile"     . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.rake$"    . ruby-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
 

@@ -9,16 +9,9 @@ export EDITOR=emacs
 # Add dotfiles bin to load path
 export PATH=$PATH:~/.dotfiles/bin
 
-# Cluster chef 
-# export CHEF_ORGANIZATION=infochimps_v2
+# Ironfan
 export CHEF_USER=dempseyt
-# export CHEF_HOMEBASE=$HOME/ics/infochimps-homebase
 
 # Colorized grep output
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;32'
-
-# Rubylib
-export RUBYLIB=$RUBYLIB:~/ics/senor_armando/lib
-export RUBYLIB=$RUBYLIB:~/ics/icss/lib
-export RUBYLIB=$RUBYLIB:~/ics/troop/lib

@@ -39,6 +39,10 @@
 (require 'feature-mode)
 (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
+;; Load scala mode
+(add-to-list 'load-path "~/.dotfiles/scala-dist/tool-support/src/emacs")
+(require 'scala-mode-auto)
+
 ;; need to fix emacs loading
 (add-to-list 'load-path "~/.dotfiles")
 

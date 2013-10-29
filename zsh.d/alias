@@ -9,11 +9,11 @@ alias ls="ls -FG"
 # Show hidden files with human-readable size in list form 
 alias la="ls -lah"
 
-# Open Mac OSX emacs 
-alias gmacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-
-# Open Mac OSX emacs in terminal mode
-alias emacs="gmacs -nw"
+# Open Mac OSX emacs
+if [[ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]]; then
+  alias gmacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
+  alias emacs="gmacs -nw"
+fi
 
 # Make directory navigation easier
 alias ..="cd ../"

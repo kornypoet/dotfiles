@@ -14,4 +14,4 @@ bindkey '^[[5D' backward-word
 export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 
 # Load RVM function
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"

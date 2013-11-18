@@ -25,6 +25,7 @@
 (global-set-key         (kbd "M-r")            'query-replace-regexp)
 (global-set-key         (kbd "<C-tab>")        'next-buffer)
 (global-set-key         (kbd "<C-S-tab>")      'previous-buffer)
+(global-set-key         (kbd "C-f")            'next-multiframe-window)
 (global-set-key         (kbd "C-x C-g")        'magit-status)
 ;; (global-set-key         (kbd "M-/")            'indent-region)
 

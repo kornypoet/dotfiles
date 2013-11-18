@@ -22,6 +22,7 @@ alias ....="cd ../../.."
 
 # Uncorrects
 alias knife="nocorrect knife "
+alias rake="noglob rake"
 
 # Useful bundle shorcuts
 alias bx="bundle exec"

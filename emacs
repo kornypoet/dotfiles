@@ -1,6 +1,9 @@
 ;; Disable startup message
 (setq inhibit-startup-message t)
 
+;; Disable menu bar
+(menu-bar-mode -1)
+
 ;; Create the autosave dir if necessary, since emacs won't.
 (make-directory "~/.emacs.d/autosaves/" t)
 
@@ -10,6 +13,12 @@
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(tool-bar-mode nil))
 
+
+;; turn off shell command echo
+;; (defun my-comint-init () 
+;;   (setq comint-process-echoes t)) 
+;; (add-hook 'comint-mode-hook 'my-comint-init)
+ 
 ;; Enable ido mode
 (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)

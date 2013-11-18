@@ -10,10 +10,10 @@ alias ls="ls -FG"
 alias la="ls -lah"
 
 # Open Mac OSX emacs
-if [[ -x /Applications/Emacs.app/Contents/MacOS/Emacs ]]; then
-  alias gmacs="/Applications/Emacs.app/Contents/MacOS/Emacs"
-  alias emacs="gmacs -nw"
-  alias emacsclient="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+if [[ -x /usr/local/Cellar/emacs/24.3/bin ]]; then
+  alias gmacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs"
+  alias emacs="/usr/local/Cellar/emacs/24.3/bin/emacs"
+  alias emacsclient="/usr/local/Cellar/emacs/24.3/bin/emacsclient"
 fi
 
 # Make directory navigation easier

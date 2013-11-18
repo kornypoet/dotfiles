@@ -12,12 +12,6 @@
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
  '(tool-bar-mode nil))
-
-
-;; turn off shell command echo
-;; (defun my-comint-init () 
-;;   (setq comint-process-echoes t)) 
-;; (add-hook 'comint-mode-hook 'my-comint-init)
  
 ;; Enable ido mode
 (setq ido-enable-flex-matching t)

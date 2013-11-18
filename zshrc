@@ -4,7 +4,7 @@ for zsh_source in $HOME/.dotfiles/zsh.d/*; do
 done
 
 # Setup rbenv
-eval "$(rbenv init -)"
+# eval "$(rbenv init -)"
      
 # key bindings
 bindkey '^[[5C' forward-word

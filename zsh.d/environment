@@ -15,3 +15,6 @@ export PATH=$PATH:$HOME/.rvm/bin
 # Colorized grep output
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='0;32'
+
+# Chef
+export CHEF_USER=dempseyt

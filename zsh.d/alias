@@ -26,7 +26,19 @@ alias knife="nocorrect knife "
 alias rake="noglob rake"
 
 # Useful bundle shorcuts
-alias bx="bundle exec"
+# alias bx="bundle exec"
 alias bake="bundle exec rake"
 alias brb="bundle console"
-alias bk="bundle exec knife"
+# alias bk="bundle exec knife"
+
+function bx() {
+  bundle exec "$@"
+}
+
+function bk() {
+  bundle exec knife "$@"
+}
+
+function gst() {
+  gist -c -f "$@" < "$@"
+}

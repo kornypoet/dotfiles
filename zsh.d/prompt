@@ -44,5 +44,13 @@ function git_color_status() {
   fi
 }
 
+function pretty_hostname() {
+  if [[ -r /etc/node_name ]] ; then
+    cat /etc/node_name
+  else
+    echo "%m"
+  fi
+}
+
 # Custom prompt
-PROMPT='%{$fg[cyan]%}%m%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'
+PROMPT='%{$fg[cyan]%}$(pretty_hostname)%{$fg[yellow]%} :: %{$fg[blue]%}%3~$(git_colored_prompt) %{$fg[yellow]%}%% %{$reset_color%}'

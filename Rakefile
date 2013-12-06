@@ -17,7 +17,13 @@ namespace :install do
     Rake::Task["install:create_links"].invoke(:forced)
   end
 
-  task :create_links, :level do |t,args|
+  desc "Creates a directory for saving shell history"
+  task :make_history_dir do
+    hist_dir = File.join(ENV['HOME'], '.history')
+    FileUtils.mkdir hist_dir unless File.exist? hist_dir
+  end
+
+  task :create_links, [ :level ] => :make_history_dir do |t,args|
     FileUtils.remove_dir("/tmp/old-dotfiles") if File.exists? "/tmp/old-dotfiles"
     FileUtils.mkdir("/tmp/old-dotfiles")
     Dir[File.join(File.dirname(__FILE__), '*')].each do |f|

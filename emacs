@@ -38,6 +38,9 @@
 ;; Load markdown-mode
 (load-file "~/.dotfiles/markdown-mode.el")
 
+;; Load highlight chars
+(load-file "~/.dotfiles/highlight-chars.el")
+
 ;; Load feature mode
 (add-to-list 'load-path "~/.dotfiles/feature-mode")
 (require 'feature-mode)

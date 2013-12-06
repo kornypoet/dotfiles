@@ -42,3 +42,10 @@ function bk() {
 function gst() {
   gist -c -f "$@" < "$@"
 }
+
+# random password generator
+# specify an output length, defaults to 8
+function randpwd() {
+  length=${1:-8}
+  openssl rand -base64 128 | tr -cd "[:alnum:]" | head -c $length ; echo
+}

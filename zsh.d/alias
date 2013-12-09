@@ -31,6 +31,8 @@ alias bake="bundle exec rake"
 alias brb="bundle console"
 # alias bk="bundle exec knife"
 
+alias g="git"
+
 function bx() {
   bundle exec "$@"
 }

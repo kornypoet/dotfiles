@@ -4,13 +4,13 @@
 alias ls="ls -FG"
 
 # Colorized and classified file listings using non-BSD version of ls
-# alias ls=ls -F --color=auto
+# alias ls="ls -F --color=auto"
 
 # Show hidden files with human-readable size in list form 
 alias la="ls -lah"
 
 # Open Mac OSX emacs
-if [[ -x /usr/local/Cellar/emacs/24.3/bin ]]; then
+if [[ -x /usr/local/Cellar/emacs/24.3/bin ]] ; then
   alias gmacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs"
   alias emacs="/usr/local/Cellar/emacs/24.3/bin/emacs"
   alias emacsclient="/usr/local/Cellar/emacs/24.3/bin/emacsclient"
@@ -21,17 +21,8 @@ alias ..="cd ../"
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-# Uncorrects
-alias knife="nocorrect knife "
-alias rake="noglob rake"
-
 # Useful bundle shorcuts
-# alias bx="bundle exec"
-alias bake="bundle exec rake"
 alias brb="bundle console"
-# alias bk="bundle exec knife"
-
-alias g="git"
 
 function bx() {
   bundle exec "$@"
@@ -41,12 +32,19 @@ function bk() {
   bundle exec knife "$@"
 }
 
+function bake() {
+  bundle exec rake "$@"
+}
+
+# Git and gist shortcuts
+alias g="git"
+
 function gst() {
   gist -c -f "$@" < "$@"
 }
 
-# random password generator
-# specify an output length, defaults to 8
+# Random alphanumeric password generator
+# Specify an output length as an argument, defaults to 8
 function randpwd() {
   length=${1:-8}
   openssl rand -base64 128 | tr -cd "[:alnum:]" | head -c $length ; echo

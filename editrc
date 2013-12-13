@@ -1,7 +1,4 @@
 ###  Editline ###
 
-# Use GNU Emacs-like bindings
-# bind -e
-
-# Use CTRL-R to search through history
+# Use CTRL-R to search through history in IRB
 bind ^R em-inc-search-prev

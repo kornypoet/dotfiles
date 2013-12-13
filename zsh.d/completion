@@ -1,8 +1,5 @@
 ### Completion ###
 
-# Turn on auto-correct
-# setopt correctall
-
 # Load completion module
 autoload -U compinit && compinit
 
@@ -95,4 +92,3 @@ _knife() {
 }
 
 compdef _knife knife
-

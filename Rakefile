@@ -22,13 +22,13 @@ namespace :install do
     Rake::Task['install:create_links'].invoke(:forced)
   end
 
-  task :make_history_dir do
+  task :history_dir do
     hist_dir = to_symlink 'history'
     FileUtils.mkdir hist_dir unless File.exist? hist_dir
   end
 
-  task :make_emacs_dir do
-    emacs_dir = to_symlink 'emacs.d'
+  task :emacs_dir do
+    emacs_dir = File.expand_path('../emacs.d/autosaves', __FILE__)
     FileUtils.mkdir emacs_dir unless File.exist? emacs_dir
   end
 
@@ -47,7 +47,7 @@ namespace :install do
     report_and_save!
   end
 
-  task :create_links, [:level] => [:make_history_dir, :make_emacs_dir] do |t, args|
+  task :create_links, [:level] => [:history_dir, :emacs_dir] do |t, args|
     FileUtils.remove_dir(old_dotfile_dir) if File.exist? old_dotfile_dir
     FileUtils.mkdir old_dotfile_dir
     install_files.each do |dotfile|

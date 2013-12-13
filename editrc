@@ -1,4 +1,4 @@
-###  Editline ###
+### Editline ###
 
 # Use CTRL-R to search through history in IRB
 bind ^R em-inc-search-prev

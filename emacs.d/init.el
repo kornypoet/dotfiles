@@ -3,8 +3,15 @@
 ;; Disable startup message
 (setq inhibit-startup-message t)
 
+;; Font and size for GUI Emacs
+(set-frame-font "Inconsolata-20")
+
 ;; Disable menu bar
 (menu-bar-mode -1)
+
+;; Solarized color theme
+(add-to-list 'custom-theme-load-path "~/emacs-color-theme-solarized")
+(load-theme 'solarized-dark t)
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
@@ -20,13 +27,16 @@
 ;; Indentation 2 spaces everywhere
 (setq-default c-basic-offset 2)
 
+;; Use CTRL + TAB to switch buffers in GUI mode
+(if window-system
+  (global-set-key (kbd "<C-tab>")   'next-buffer)
+  (global-set-key (kbd "<C-S-tab>") 'previous-buffer))
+
 ;; Key bindings
-(global-set-key         (kbd "M-;")            'comment-or-uncomment-region)
-(global-set-key         (kbd "M-g")            'goto-line)
-(global-set-key         (kbd "M-r")            'query-replace-regexp)
-;; (global-set-key         (kbd "<C-tab>")        'next-buffer)
-;; (global-set-key         (kbd "<C-S-tab>")      'previous-buffer)
-(global-set-key         (kbd "C-f")            'next-multiframe-window)
+(global-set-key   (kbd "M-;")       'comment-or-uncomment-region)
+(global-set-key   (kbd "M-g")       'goto-line)
+(global-set-key   (kbd "M-r")       'query-replace-regexp)
+(global-set-key   (kbd "C-f")       'next-multiframe-window)
 ;; (global-set-key         (kbd "C-x C-g")        'magit-status)
 
 ;; Load pig-mode

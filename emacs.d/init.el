@@ -33,11 +33,20 @@
   (global-set-key (kbd "<C-S-tab>") 'previous-buffer))
 
 ;; Key bindings
-(global-set-key   (kbd "M-;")       'comment-or-uncomment-region)
-(global-set-key   (kbd "M-g")       'goto-line)
-(global-set-key   (kbd "M-r")       'query-replace-regexp)
-(global-set-key   (kbd "C-f")       'next-multiframe-window)
-;; (global-set-key         (kbd "C-x C-g")        'magit-status)
+(global-set-key (kbd "M-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "M-g") 'goto-line)
+(global-set-key (kbd "M-r") 'query-replace-regexp)
+(global-set-key (kbd "C-f") 'next-multiframe-window)
+;; (global-set-key (kbd "C-x C-g") 'magit-status)
+
+;; Add file types associated with ruby
+(add-to-list 'auto-mode-alist '("Rakefile"    . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile"     . ruby-mode))
+(add-to-list 'auto-mode-alist '("Guardfile"   . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile"     . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.rake$"    . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.ru$"      . ruby-mode))
+(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
 
 ;; Load pig-mode
 ;; (load-file "~/.dotfiles/pig-mode.el")
@@ -65,18 +74,3 @@
 ;; (require 'magit)
 
 ;; (setq magit-status-buffer-switch-function 'switch-to-buffer)
-
-;; Load inferior ruby
-;; (add-to-list 'load-path "~/.dotfiles/inf-ruby")
-
-;; Add file types associated with ruby
-;; (setq auto-mode-alist (cons '("Rakefile"    . ruby-mode) auto-mode-alist))
-;; (setq auto-mode-alist (cons '("Gemfile"     . ruby-mode) auto-mode-alist))
-;; (setq auto-mode-alist (cons '("Guardfile"   . ruby-mode) auto-mode-alist))
-;; (setq auto-mode-alist (cons '("Capfile"     . ruby-mode) auto-mode-alist))
-;; (setq auto-mode-alist (cons '("\\.rake$"    . ruby-mode) auto-mode-alist))
-;; (setq auto-mode-alist (cons '("\\.gemspec$" . ruby-mode) auto-mode-alist))
-
-;; Default font settings
-;; (custom-set-faces
-;;  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Monaco")))))

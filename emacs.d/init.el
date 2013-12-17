@@ -29,8 +29,8 @@
 
 ;; Use CTRL + TAB to switch buffers in GUI mode
 (if window-system
-  (global-set-key (kbd "<C-tab>")   'next-buffer)
   (global-set-key (kbd "<C-S-tab>") 'previous-buffer))
+  (global-set-key (kbd "<C-tab>")   'next-buffer)
 
 ;; Key bindings
 (global-set-key (kbd "M-;") 'comment-or-uncomment-region)

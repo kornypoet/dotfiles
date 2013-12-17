@@ -14,7 +14,7 @@
 (set-frame-font "Inconsolata-20")
 
 ;; Solarized color theme
-(add-to-list 'custom-theme-load-path "~/emacs-color-theme-solarized")
+(add-to-list 'custom-theme-load-path "~/.dotfiles/vendor/emacs-solarized")
 (load-theme 'solarized-dark t)
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.

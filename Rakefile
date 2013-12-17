@@ -66,7 +66,7 @@ namespace :install do
   end
 
   def noninstall_files
-    %w[ README.md MANIFEST Rakefile . .. .git zsh.d ]
+    %w[ README.md MANIFEST Rakefile . .. .git zsh.d bashrc csshrc emacs-modes ]
   end
   
   def report_and_save!

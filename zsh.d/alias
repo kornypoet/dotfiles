@@ -36,6 +36,10 @@ function bake() {
   bundle exec rake "$@"
 }
 
+function bspec() {
+  bundle exec rspec "$@"
+}
+
 # Git and gist shortcuts
 alias g="git"
 

@@ -5,7 +5,8 @@
 
 ;; Disable menu and tool bar
 (menu-bar-mode -1)
-(tool-bar-mode -1)
+(if window-system
+    (tool-bar-mode -1))
 
 ;; Indentation 2 spaces everywhere
 (setq-default c-basic-offset 2)
@@ -29,8 +30,8 @@
 
 ;; Use CTRL + TAB to switch buffers in GUI mode
 (if window-system
-  (global-set-key (kbd "<C-S-tab>") 'previous-buffer))
-  (global-set-key (kbd "<C-tab>")   'next-buffer)
+  (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
+  (global-set-key (kbd "<C-tab>")   'next-buffer))
 
 ;; Key bindings
 (global-set-key (kbd "M-;") 'comment-or-uncomment-region)

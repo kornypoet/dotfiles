@@ -5,7 +5,7 @@
 
 ;; Disable menu and tool bar
 (menu-bar-mode -1)
-(if window-system
+(when window-system
     (tool-bar-mode -1))
 
 ;; Indentation 2 spaces everywhere
@@ -29,7 +29,7 @@
 (ido-mode 1)
 
 ;; Use CTRL + TAB to switch buffers in GUI mode
-(if window-system
+(when window-system
   (global-set-key (kbd "<C-S-tab>") 'previous-buffer)
   (global-set-key (kbd "<C-tab>")   'next-buffer))
 

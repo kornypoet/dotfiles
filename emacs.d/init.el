@@ -61,10 +61,10 @@
 ;; (load-file "~/.dotfiles/highlight-chars.el")
 ;; (add-hook 'font-lock-mode-hook 'hc-highlight-trailing-whitespace)
 
-;; Load feature mode
-;; (add-to-list 'load-path "~/.dotfiles/feature-mode")
-;; (require 'feature-mode)
-;; (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+;; Load cucumber mode
+(add-to-list 'load-path "~/.dotfiles/vendor/cucumber-mode")
+(require 'feature-mode)
+(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
 ;; Load scala mode
 ;; (add-to-list 'load-path "~/.dotfiles/scala-dist/tool-support/src/emacs")

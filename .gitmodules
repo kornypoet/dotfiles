@@ -4,3 +4,6 @@
 [submodule "vendor/emacs-solarized"]
 	path = vendor/emacs-solarized
 	url = git@github.com:sellout/emacs-color-theme-solarized.git
+[submodule "vendor/cucumber-mode"]
+	path = vendor/cucumber-mode
+	url = git@github.com:michaelklishin/cucumber.el.git

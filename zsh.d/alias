@@ -40,6 +40,10 @@ function bspec() {
   bundle exec rspec "$@"
 }
 
+function bcuc() {
+  bundle exec cucumber "$@"
+}
+
 # Git and gist shortcuts
 alias g="git"
 

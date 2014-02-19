@@ -7,7 +7,7 @@ export SHELL=/bin/zsh
 export EDITOR=emacs
 
 # Add dotfiles bin to load path
-export PATH=$PATH:$HOME/.dotfiles/bin
+export PATH=$HOME/.dotfiles/bin:$PATH
 
 # Colorized grep output
 export GREP_OPTIONS='--color=auto'

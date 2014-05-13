@@ -4,4 +4,6 @@ for zsh_source in $HOME/.dotfiles/zsh.d/* ; do
 done
 
 # Setup rbenv
-eval "$(rbenv init -)"
+if [ -n `type rbenv | grep 'shell function'` ] ; then
+  eval "$(rbenv init -)"
+fi

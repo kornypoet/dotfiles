@@ -6,13 +6,17 @@
 [github]
 	user = kornypoet
 [alias]
-        st = status
-	ci = commit
-	co = checkout
-	br = branch
-	df = diff
-	sm = submodule
+	pre  = "!bash /usr/local/lib/open-r10k-repo-pull-request trdempsey venmo"
+	last = log -1 HEAD
+	st   = status
+	ci   = commit
+	co   = checkout
+	br   = branch
+	df   = diff
+	sm   = submodule
 [core]
 	editor = emacs
 [credential]
 	helper = osxkeychain
+[hub]
+	host = github.braintreeps.com

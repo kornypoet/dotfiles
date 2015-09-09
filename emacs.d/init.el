@@ -5,23 +5,54 @@
 
 ;; Disable menu and tool bar
 (menu-bar-mode -1)
-(when window-system
-    (tool-bar-mode -1))
+(when window-system (tool-bar-mode -1))
 
 ;; Indentation 2 spaces everywhere
 (setq-default c-basic-offset 2)
 
-;; Font and size for GUI Emacs
-(set-frame-font "Inconsolata-20")
+;; Use Emacs terminfo, not system terminfo
+(setq system-uses-terminfo nil)
 
-;; Solarized color theme
-(add-to-list 'custom-theme-load-path "~/.dotfiles/vendor/emacs-solarized")
-(load-theme 'solarized-dark t)
+(when (>= emacs-major-version 24)
+  (require 'package)
+  (add-to-list
+   'package-archives
+   '("melpa" . "http://melpa.org/packages/") t)
+    (package-initialize))
+
+(require 'multi-term)
+(setq multi-term-program "/bin/zsh")
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/")))))
+ '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(term-bind-key-alist
+  (quote
+   (("C-c C-c" . term-interrupt-subjob)
+    ("C-c C-e" . term-send-esc)
+    ("C-j" . term-toggle-mode)
+    ("C-p" . previous-line)
+    ("C-n" . next-line)
+    ("C-s" . isearch-forward)
+    ;; ("C-r" . isearch-backward)    
+    ("C-r" . term-send-reverse-search-history)
+    ("C-m" . term-send-return)
+    ("C-y" . term-paste)
+    ("C-z" . term-stop-subjob)
+    ("M-f" . term-send-forward-word)
+    ("M-b" . term-send-backward-word)
+    ("M-o" . term-send-backspace)
+    ("M-p" . term-send-up)
+    ("M-n" . term-send-down)
+    ("M-M" . term-send-forward-kill-word)
+    ("M-N" . term-send-backward-kill-word)
+    ("<C-backspace>" . term-send-backward-kill-word)
+    ("<M-backspace>" . term-send-backward-kill-word)
+    ("<M-DEL>" . term-send-backward-kill-word)
+    ("M-r" . term-send-reverse-search-history)
+    ("M-," . term-send-raw)
+    ("M-." . comint-dynamic-complete)))))
  
 ;; Enable ido mode
 (setq ido-enable-flex-matching t)
@@ -45,6 +76,7 @@
 (add-to-list 'auto-mode-alist '("Gemfile"     . ruby-mode))
 (add-to-list 'auto-mode-alist '("Guardfile"   . ruby-mode))
 (add-to-list 'auto-mode-alist '("Capfile"     . ruby-mode))
+(add-to-list 'auto-mode-alist '("Puppetfile"  . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.rake$"    . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$"      . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
@@ -62,9 +94,9 @@
 ;; (add-hook 'font-lock-mode-hook 'hc-highlight-trailing-whitespace)
 
 ;; Load cucumber mode
-(add-to-list 'load-path "~/.dotfiles/vendor/cucumber-mode")
-(require 'feature-mode)
-(add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
+;; (add-to-list 'load-path "~/.dotfiles/vendor/cucumber-mode")
+;; (require 'feature-mode)
+;; (add-to-list 'auto-mode-alist '("\.feature$" . feature-mode))
 
 ;; Load scala mode
 ;; (add-to-list 'load-path "~/.dotfiles/scala-dist/tool-support/src/emacs")
@@ -78,3 +110,11 @@
 ;; (require 'magit)
 
 ;; (setq magit-status-buffer-switch-function 'switch-to-buffer)
+
+(defun term-toggle-mode ()
+  (interactive)
+  (if (term-in-line-mode)
+    (term-char-mode)
+      (term-line-mode)))
+
+(define-key term-mode-map (kbd "C-j") 'term-toggle-mode)

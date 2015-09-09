@@ -6,15 +6,31 @@ alias ls="ls -FG"
 # Colorized and classified file listings using non-BSD version of ls
 # alias ls="ls -F --color=auto"
 
-# Show hidden files with human-readable size in list form 
+# Show hidden files with human-readable size in list form
 alias la="ls -lah"
 
 # Open Mac OSX emacs
-if [[ -x /usr/local/Cellar/emacs/24.3/bin ]] ; then
-  alias gmacs="/usr/local/Cellar/emacs/24.3/Emacs.app/Contents/MacOS/Emacs"
-  alias emacs="/usr/local/Cellar/emacs/24.3/bin/emacs"
-  alias emacsclient="/usr/local/Cellar/emacs/24.3/bin/emacsclient"
+if [[ -x /usr/local/Cellar/emacs/24.5/bin ]] ; then
+  alias gmacs="/usr/local/Cellar/emacs/24.5/Emacs.app/Contents/MacOS/Emacs"
+  alias emacs="/usr/local/Cellar/emacs/24.5/bin/emacs"
+  alias emacsclient="/usr/local/Cellar/emacs/24.5/bin/emacsclient"
 fi
+
+if [ -n "$INSIDE_EMACS" ]; then
+  alias emacs="emacs-within-emacs"
+fi
+
+function emacsd() {
+  emacs --daemon
+}
+
+function emacst() {
+  emacsclient -t --eval "(multi-term)"
+}
+
+function emacs-within-emacs() {
+  emacsclient -n "$@"
+}
 
 # Make directory navigation easier
 alias ..="cd ../"

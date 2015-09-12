@@ -40,6 +40,8 @@ alias ....="cd ../../.."
 # Useful bundle shorcuts
 alias brb="bundle console"
 
+alias b="bundle"
+
 function bx() {
   bundle exec "$@"
 }

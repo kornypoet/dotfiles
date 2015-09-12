@@ -69,6 +69,8 @@
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-r") 'query-replace-regexp)
 (global-set-key (kbd "C-f") 'next-multiframe-window)
+(global-set-key (kbd "C-c C-t") 'untabify)
+(global-set-key (kbd "C-c C-w") 'whitespace-cleanup)
 ;; (global-set-key (kbd "C-x C-g") 'magit-status)
 
 ;; Add file types associated with ruby

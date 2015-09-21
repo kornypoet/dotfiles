@@ -21,7 +21,9 @@ if [ -n "$INSIDE_EMACS" ]; then
 fi
 
 function emacsd() {
-  emacs --daemon
+  if [ -z "$(ps aux | grep -p '[Ee]macs.*--daemon')" ] ; then
+    emacs --daemon
+  fi
 }
 
 function emacst() {

@@ -9,6 +9,7 @@
 
 ;; Indentation 2 spaces everywhere
 (setq-default c-basic-offset 2)
+(setq js-indent-level 2)
 
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)

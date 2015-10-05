@@ -39,6 +39,9 @@ alias ..="cd ../"
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
+# Vagrant alias
+alias v="vagrant"
+
 # Useful bundle shorcuts
 alias brb="bundle console"
 

@@ -11,6 +11,9 @@
 (setq-default c-basic-offset 2)
 (setq js-indent-level 2)
 
+;; Show column number
+(setq column-number-mode t)
+
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)
 
@@ -36,7 +39,7 @@
     ("C-p" . previous-line)
     ("C-n" . next-line)
     ("C-s" . isearch-forward)
-    ;; ("C-r" . isearch-backward)    
+    ;; ("C-r" . isearch-backward)
     ("C-r" . term-send-reverse-search-history)
     ("C-m" . term-send-return)
     ("C-y" . term-paste)
@@ -54,7 +57,7 @@
     ("M-r" . term-send-reverse-search-history)
     ("M-," . term-send-raw)
     ("M-." . comint-dynamic-complete)))))
- 
+
 ;; Enable ido mode
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)

@@ -14,9 +14,7 @@
 	br   = branch
 	df   = diff
 	sm   = submodule
-[core]
-	editor = emacs
 [credential]
 	helper = osxkeychain
-[hub]
-	host = github.braintreeps.com
+[tag]
+	sort = version:refname

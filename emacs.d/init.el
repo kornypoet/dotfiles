@@ -17,6 +17,7 @@
 ;; Use Emacs terminfo, not system terminfo
 (setq system-uses-terminfo nil)
 
+;; Use Melpa for package installs
 (when (>= emacs-major-version 24)
   (require 'package)
   (add-to-list
@@ -24,39 +25,53 @@
    '("melpa" . "http://melpa.org/packages/") t)
     (package-initialize))
 
+;; Load with-editor (from magit) for commit in emacs
+(require 'with-editor)
+
+;; Multi-term setup
 (require 'multi-term)
 (setq multi-term-program "/bin/zsh")
+(add-hook 'term-exec-hook 'with-editor-export-git-editor)
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(package-selected-packages (quote (magit yaml-mode puppet-mode multi-term)))
  '(term-bind-key-alist
-  (quote
-   (("C-c C-c" . term-interrupt-subjob)
-    ("C-c C-e" . term-send-esc)
-    ("C-j" . term-toggle-mode)
-    ("C-p" . previous-line)
-    ("C-n" . next-line)
-    ("C-s" . isearch-forward)
-    ;; ("C-r" . isearch-backward)
-    ("C-r" . term-send-reverse-search-history)
-    ("C-m" . term-send-return)
-    ("C-y" . term-paste)
-    ("C-z" . term-stop-subjob)
-    ("M-f" . term-send-forward-word)
-    ("M-b" . term-send-backward-word)
-    ("M-o" . term-send-backspace)
-    ("M-p" . term-send-up)
-    ("M-n" . term-send-down)
-    ("M-M" . term-send-forward-kill-word)
-    ("M-N" . term-send-backward-kill-word)
-    ("<C-backspace>" . term-send-backward-kill-word)
-    ("<M-backspace>" . term-send-backward-kill-word)
-    ("<M-DEL>" . term-send-backward-kill-word)
-    ("M-r" . term-send-reverse-search-history)
-    ("M-," . term-send-raw)
-    ("M-." . comint-dynamic-complete)))))
+   (quote
+    (("C-c C-c" . term-interrupt-subjob)
+     ("C-c C-e" . term-send-esc)
+     ("C-j" . term-toggle-mode)
+     ("C-p" . previous-line)
+     ("C-n" . next-line)
+     ("C-s" . isearch-forward)
+     ("C-r" . term-send-reverse-search-history)
+     ("C-m" . term-send-return)
+     ("C-y" . term-paste)
+     ("C-z" . term-stop-subjob)
+     ("M-f" . term-send-forward-word)
+     ("M-b" . term-send-backward-word)
+     ("M-o" . term-send-backspace)
+     ("M-p" . term-send-up)
+     ("M-n" . term-send-down)
+     ("M-M" . term-send-forward-kill-word)
+     ("M-N" . term-send-backward-kill-word)
+     ("<C-backspace>" . term-send-backward-kill-word)
+     ("<M-backspace>" . term-send-backward-kill-word)
+     ("<M-DEL>" . term-send-backward-kill-word)
+     ("M-r" . term-send-reverse-search-history)
+     ("M-," . term-send-raw)
+     ("M-." . comint-dynamic-complete)))))
+
+;; Switch between line and char mode in multi-term
+(defun term-toggle-mode ()
+  (interactive)
+  (if (term-in-line-mode)
+    (term-char-mode)
+      (term-line-mode)))
+
+(define-key term-mode-map (kbd "C-j") 'term-toggle-mode)
 
 ;; Enable ido mode
 (setq ido-enable-flex-matching t)
@@ -110,17 +125,3 @@
 
 ;; need to fix emacs loading
 ;; (add-to-list 'load-path "~/.dotfiles")
-
-;; Load magit
-;; (add-to-list 'load-path "~/.dotfiles/magit")
-;; (require 'magit)
-
-;; (setq magit-status-buffer-switch-function 'switch-to-buffer)
-
-(defun term-toggle-mode ()
-  (interactive)
-  (if (term-in-line-mode)
-    (term-char-mode)
-      (term-line-mode)))
-
-(define-key term-mode-map (kbd "C-j") 'term-toggle-mode)

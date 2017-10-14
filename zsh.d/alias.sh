@@ -39,6 +39,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
+# Docker alias
+alias d="docker"
+
 # Vagrant alias
 alias v="vagrant"
 

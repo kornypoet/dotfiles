@@ -107,6 +107,11 @@
 ;; Load pig-mode
 ;; (load-file "~/.dotfiles/pig-mode.el")
 
+;; Load Dockerfile mode
+(load-file "~/.dotfiles/emacs-modes/dockerfile-mode.el")
+(require 'dockerfile-mode)
+(add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode))
+
 ;; Load markdown-mode
 ;; (load-file "~/.dotfiles/markdown-mode.el")
 
@@ -125,3 +130,5 @@
 
 ;; need to fix emacs loading
 ;; (add-to-list 'load-path "~/.dotfiles")
+(put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)

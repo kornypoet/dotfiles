@@ -13,10 +13,10 @@ alias la="ls -lah"
 alias e="emacs"
 
 # Use brew installed emacs if it exists
-if [[ -x /usr/local/Cellar/emacs/25.2/bin ]] ; then
-    alias gmacs="/usr/local/Cellar/emacs/25.2/bin/emacs"
-    alias emacs="/usr/local/Cellar/emacs/25.2/bin/emacs -nw"
-    alias emacsclient="/usr/local/Cellar/emacs/25.2/bin/emacsclient"
+if [[ -x /usr/local/Cellar/emacs/25.3/bin ]] ; then
+    alias gmacs="/usr/local/Cellar/emacs/25.3/bin/emacs"
+    alias emacs="/usr/local/Cellar/emacs/25.3/bin/emacs -nw"
+    alias emacsclient="/usr/local/Cellar/emacs/25.3/bin/emacsclient"
 fi
 
 if [ -n "$INSIDE_EMACS" ]; then

@@ -40,7 +40,18 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Docker alias
-alias d="docker"
+# alias d="docker"
+function d() {
+    if [[ $1 == "compose" ]]; then
+        shift
+        docker-compose "$@"
+    else
+        docker "$@"
+    fi
+}
+
+# Terraform alias
+alias t="terraform"
 
 # Vagrant alias
 alias v="vagrant"
@@ -69,6 +80,12 @@ function bcuc() {
     bundle exec cucumber "$@"
 }
 
+function awso() {
+    account=$1
+    shift
+    aws-okta exec $account -- aws "$@"
+}
+
 # Git related shortcuts
 alias g="hub"
 
@@ -77,15 +94,14 @@ function gst() {
     gist -c -f "$@" < "$@"
 }
 
+# Golang helpers
+function goto() {
+    # Still find top level dirs first, eg grafana/grafana
+    cd $(find $GOPATH -type d -name $@ | head -n 1)
+}
 # Random alphanumeric password generator
 # Specify an output length as an argument, defaults to 8
 function randpwd() {
     length=${1:-8}
     openssl rand -base64 128 | tr -cd "[:alnum:]" | head -c $length ; echo
-}
-
-function eyedit() {
-    eyaml edit --pkcs7-private-key $SEC_DIR/eyaml_keys/$1_private_key.pkcs7.pem \
-	  --pkcs7-public-key $SEC_DIR/eyaml_keys/$1_public_key.pkcs7.pem \
-	  $PUPPET_MODULES_DIR/environments/hieradata/$1_environment.eyaml
 }

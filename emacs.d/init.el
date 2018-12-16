@@ -35,9 +35,15 @@
 
 ;; Put autosave files (ie #foo#) and backup files (ie foo~) in ~/.emacs.d/.
 (custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
  '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
- '(package-selected-packages (quote (magit yaml-mode puppet-mode multi-term)))
+ '(package-selected-packages
+   (quote
+    (hcl-mode scala-mode go-mode vagrant-tramp magit yaml-mode puppet-mode multi-term)))
  '(term-bind-key-alist
    (quote
     (("C-c C-c" . term-interrupt-subjob)
@@ -58,6 +64,8 @@
      ("M-M" . term-send-forward-kill-word)
      ("M-N" . term-send-backward-kill-word)
      ("<C-backspace>" . term-send-backward-kill-word)
+     ("<C-down>" . forward-paragraph)
+     ("<C-up>" . backward-paragraph)
      ("<M-backspace>" . term-send-backward-kill-word)
      ("<M-DEL>" . term-send-backward-kill-word)
      ("M-r" . term-send-reverse-search-history)
@@ -77,6 +85,9 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; Tabs are evil
+(setq-default indent-tabs-mode nil)
 
 ;; Use CTRL + TAB to switch buffers in GUI mode
 (when window-system
@@ -101,7 +112,7 @@
 (add-to-list 'auto-mode-alist '("\\.rake$"    . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.ru$"      . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-
+(add-to-list 'auto-mode-alist '("\\.tf$"      . hcl-mode))
 ;; Show tabs as a UTF-8 arrow
 ;; (standard-display-ascii ?\t "→")
 ;; Load pig-mode
@@ -132,3 +143,12 @@
 ;; (add-to-list 'load-path "~/.dotfiles")
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+;; Automatically make shebang scripts executable
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)

@@ -6,8 +6,7 @@
 [github]
 	user = kornypoet
 [alias]
-	pre  = "!bash /usr/local/lib/open-r10k-repo-pull-request trdempsey venmo"
-	last = log -1 HEAD
+        la   = log --stat --graph
 	st   = status
 	ci   = commit
 	co   = checkout

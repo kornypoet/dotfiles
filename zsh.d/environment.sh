@@ -26,5 +26,8 @@ export EYAML_KEYS_DIR=$SEC_DIR/eyaml_keys
 
 # Virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/venmo
 source /usr/local/bin/virtualenvwrapper.sh
+
+# Golang
+export GOPATH=$HOME/dev/go
+export PATH=$PATH:$GOPATH/bin

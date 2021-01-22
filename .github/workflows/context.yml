@@ -1,0 +1,11 @@
+on: issues
+  types: [opened]
+
+jobs:
+  foobar:
+    name: Foobar
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GITHUB_EVENT: ${{ toJSON(github.event) }}
+        run: echo "$GITHUB_EVENT"

@@ -2,9 +2,8 @@ on:
   create:
   issues:
     types: [opened]
-  push:
-    branches:
-      - master
+  pull_request:
+    types: [closed]
 
 jobs:
   foobar:

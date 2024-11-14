@@ -42,16 +42,16 @@ alias .....="cd ../../../.."
 # Docker alias
 # alias d="docker"
 function d() {
-    if [[ $1 == "compose" ]]; then
-        shift
-        docker-compose "$@"
-    else
+    # if [[ $1 == "compose" ]]; then
+    #     shift
+    #     docker-compose "$@"
+    # else
         docker "$@"
-    fi
+    # fi
 }
 
 # Terraform alias
-alias t="aws-okta exec jask-prod -- terraform"
+alias t="terraform"
 
 # Vagrant alias
 alias v="vagrant"
@@ -87,7 +87,12 @@ function awso() {
 }
 
 # Git related shortcuts
-alias g="hub"
+# should probably switch to github cli
+alias git="hub"
+alias g="git"
+
+alias mk="minikube kubectl -- "
+alias k="kubectl"
 
 # Create a gist from a file, name it after that file, and copy URL to clipboard
 function gst() {

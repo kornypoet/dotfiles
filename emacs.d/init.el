@@ -1,5 +1,21 @@
 ;;; General Emacs Settings ;;;
 
+;; Key Bindings
+;; C-q quoted-insert
+;; C-j literal newline
+;; C-h k (M-x describe-key)
+;; C-h c (M-x describe-key-briefly)
+;; C-h f (M-x describe-function)
+;; C-h b (M-x describe-bindings)
+;; C-x C-l (lowercase region)
+;; C-x C-u (upcase region)
+;;
+;; Copy from Emacs to OS X clipboard:
+;; select region then M-| pbcopy RET
+;;
+;; Paste from OS X clipboard to Emacs:
+;; C-u M-| pbpaste RET (replaces current region if it exists)
+
 ;; Disable startup message
 (setq inhibit-startup-message t)
 
@@ -39,14 +55,12 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-save-file-name-transforms (quote ((".*" "~/.emacs.d/autosaves/\\1" t))))
- '(backup-directory-alist (quote ((".*" . "~/.emacs.d/backups/"))))
+ '(auto-save-file-name-transforms '((".*" "~/.emacs.d/autosaves/\\1" t)))
+ '(backup-directory-alist '((".*" . "~/.emacs.d/backups/")))
  '(package-selected-packages
-   (quote
-    (hcl-mode scala-mode go-mode vagrant-tramp magit yaml-mode puppet-mode multi-term)))
+   '(ansible-vault terraform-mode hcl-mode scala-mode go-mode vagrant-tramp magit yaml-mode puppet-mode multi-term))
  '(term-bind-key-alist
-   (quote
-    (("C-c C-c" . term-interrupt-subjob)
+   '(("C-c C-c" . term-interrupt-subjob)
      ("C-c C-e" . term-send-esc)
      ("C-j" . term-toggle-mode)
      ("C-p" . previous-line)
@@ -70,7 +84,7 @@
      ("<M-DEL>" . term-send-backward-kill-word)
      ("M-r" . term-send-reverse-search-history)
      ("M-," . term-send-raw)
-     ("M-." . comint-dynamic-complete)))))
+     ("M-." . comint-dynamic-complete))))
 
 ;; Switch between line and char mode in multi-term
 (defun term-toggle-mode ()
@@ -152,3 +166,6 @@
 
 ;; Automatically make shebang scripts executable
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
+(load-file "~/.dotfiles/emacs-modes/go-template-mode.el")
+(require 'go-template-mode)

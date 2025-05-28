@@ -10,28 +10,35 @@ alias ls="ls -FG"
 alias la="ls -lah"
 
 # Emacs alias
-alias e="emacs"
-
-# Use brew installed emacs if it exists
-if [[ -x /usr/local/Cellar/emacs/26.1_1/bin ]] ; then
-    alias gmacs="/usr/local/Cellar/emacs/26.1_1/bin/emacs"
-    alias emacs="/usr/local/Cellar/emacs/26.1_1/bin/emacs -nw"
-    alias emacsclient="/usr/local/Cellar/emacs/26.1_1/bin/emacsclient"
-fi
-
-if [ -n "$INSIDE_EMACS" ]; then
-    alias emacs="emacs-within-emacs"
-fi
-
-# Start emacsclient as a terminal and start server if not running
-function et() {
-    emacsclient -t --eval "(progn (multi-term) (rename-buffer \"${1:-jj}\"))" -a ""
-}
-
-# When inside emacs open a new buffer instead of a frame
-function emacs-within-emacs() {
+# alias e="emacsclient -c -n --alternate-editor=''"
+function e() {
+    if ! emacsclient -e 0 >& /dev/null; then
+	emacs --daemon
+	# emacsclient -t --eval "(progn (multi-vterm) (rename-buffer \"${1:-jj}\"))"	
+    fi
     emacsclient -n "$@"
 }
+
+# Use brew installed emacs if it exists
+# if [[ -x /usr/local/Cellar/emacs/26.1_1/bin ]] ; then
+#    alias gmacs="/usr/local/Cellar/emacs/26.1_1/bin/emacs"
+#    alias emacs="/usr/local/Cellar/emacs/26.1_1/bin/emacs -nw"
+#    alias emacsclient="/usr/local/Cellar/emacs/26.1_1/bin/emacsclient"
+# fi
+
+# if [ -n "$INSIDE_EMACS" ]; then
+#     alias emacs="emacs-within-emacs"
+# fi
+
+# Start emacsclient as a terminal and start server if not running
+# function et() {
+#    emacsclient -t --eval "(progn (multi-term) (rename-buffer \"${1:-jj}\"))" -a ""
+# }
+
+# When inside emacs open a new buffer instead of a frame
+# function emacs-within-emacs() {
+#     emacsclient -n "$@"
+# }
 
 # Make directory navigation easier
 alias ..="cd ../"
@@ -40,14 +47,8 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
 # Docker alias
-# alias d="docker"
 function d() {
-    # if [[ $1 == "compose" ]]; then
-    #     shift
-    #     docker-compose "$@"
-    # else
-        docker "$@"
-    # fi
+    docker "$@"
 }
 
 # Terraform alias
@@ -78,12 +79,6 @@ function bspec() {
 
 function bcuc() {
     bundle exec cucumber "$@"
-}
-
-function awso() {
-    account=$1
-    shift
-    aws-okta exec $account -- aws "$@"
 }
 
 # Git related shortcuts

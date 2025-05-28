@@ -1,6 +1,8 @@
 [user]
-	email = travis.dempsey@jumpcloud.com
+	email = dempsey.travis@perpetualsystems.com
 	name = Travis Dempsey
+[core]
+        editor = emacsclient
 [color]
 	ui = true
 [github]

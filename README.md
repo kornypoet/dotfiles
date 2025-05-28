@@ -5,3 +5,7 @@
 ```cd ~/.dotfiles```
 
 ```rake```
+
+
+need cask emacs
+cmake libtool

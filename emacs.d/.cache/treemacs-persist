@@ -1,0 +1,5 @@
+* Default
+** dev
+ - path :: ~/dev
+** per
+ - path :: ~/per

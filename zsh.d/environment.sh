@@ -4,7 +4,7 @@
 export SHELL=/bin/zsh
 
 # Explicitly set editor
-export EDITOR=emacs
+export EDITOR=emacsclient
 
 # Add dotfiles bin to load path
 export PATH=$HOME/.dotfiles/bin:$PATH

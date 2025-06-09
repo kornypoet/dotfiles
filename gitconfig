@@ -6,27 +6,27 @@
 [color]
 	ui = true
 [github]
-	user = tdempseyjc
+	user = kornypoet
 [alias]
-        la   = log --stat --graph
-	st   = status
-	ci = commit
-	co = checkout
-	br   = branch
-	df   = diff
-	sm   = submodule
-        pq   = pull-request -c --no-edit
-	alias = "!f() { git config --global -- alias.\"$@\"; }; f"
+        la      = log --stat --graph
+	st      = status
+	ci      = commit
+	co      = checkout
+	br      = branch
+	df      = diff
+	sm      = submodule
+        pq      = pull-request -c --no-edit
+	alias   = "!f() { git config --global -- alias.\"$@\"; }; f"
 	aliases = !git config -l | sed -ne 's/^alias\\.//p'
-	amend = commit --amend -C HEAD
-	au = "!f() { git add -u ${@-:/}; }; f"
-	b = branch
-	fp = format-patch
-	last = log -1 HEAD
-	ll = log --date=short --pretty=format:%C(yellow)%h\\ %ad\\ %Cred%d\\ %Creset%s%Cblue\\ [%aN]
-	new = log HEAD@{1}..HEAD@{0}
-	pick = cherry-pick
-	sub = submodule update --init --recursive
+	amend   = commit --amend -C HEAD
+	au      = "!f() { git add -u ${@-:/}; }; f"
+	b       = branch
+	fp      = format-patch
+	last    = log -1 HEAD
+	ll      = log --date=short --pretty=format:%C(yellow)%h\\ %ad\\ %Cred%d\\ %Creset%s%Cblue\\ [%aN]
+	new     = log HEAD@{1}..HEAD@{0}
+	pick    = cherry-pick
+	sub     = submodule update --init --recursive
 	unstage = reset HEAD --
 [credential]
 	helper = osxkeychain

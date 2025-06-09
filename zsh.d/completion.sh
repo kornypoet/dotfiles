@@ -1,6 +1,10 @@
 ### Completion ###
 
 # Load completion module
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+fi
+
 autoload -U compinit && compinit
 
 # Match uppercase from lowercase
@@ -92,6 +96,7 @@ _knife() {
 }
 
 compdef _knife knife
+
 
 bindkey "\e[1;5C" forward-word
 bindkey "\e[1;5D" backward-word

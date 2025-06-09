@@ -52,7 +52,7 @@ function d() {
 }
 
 # Terraform alias
-alias t="terraform"
+alias t="tofu"
 
 # Vagrant alias
 alias v="vagrant"
@@ -83,7 +83,7 @@ function bcuc() {
 
 # Git related shortcuts
 # should probably switch to github cli
-alias git="hub"
+# alias git="hub"
 alias g="git"
 
 alias mk="minikube kubectl -- "
